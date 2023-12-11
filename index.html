@@ -1,0 +1,51 @@
+<html>
+	<head>
+        <link rel="stylesheet" href="style.css">
+		<title>Factory Triplex</title>
+	</head>
+	<body>
+        <div id="float-l"> 
+            <h1>Factory Triplex Beta</h1>
+            <label for="file" ><b id="fileLabel">Level: 1</b></label>
+            <progress id="file" max=100 value=0></progress>
+            <br><b id="Cookies"> </b><br>
+            <b id="Grams"> </b><br>
+            <button class="btn" onclick="sell()" id="sell">Refine Nodes</button>
+            <h3>Shop</h3>
+            <button class="btn" onclick="upgrader()" id="upgrade">Upgrade: n/a</button> <br> <br>
+            <button class="btn" onclick="buyRefiner()" id="refinerupgrade">Upgrade Refiner: n/a</button>
+            <h3 id="pickaxe">Pickaxe</h3> 
+            <p>You can mine the following:</p>
+            <ul id="pickaxePower">
+            
+            </ul>
+            <h3 id="refinerText">N/a Refiner</h3>
+            <p id="rlevel">Refiner Level: n/a</p>
+            <p id="reffects">Effects: n/a</p>
+    </div>
+	<div class="float-r">
+		<h2 id="workertext">N/a workers</h2>
+        <button class="btn" onclick="buyWorker()" id="buyWorker">Buy Worker (n/a): n/a</button>
+	</div>
+        
+        <div class="cenp" id="cenp">
+		    <input class="button" type="image" onclick="increase()" id="CookieButton" height="200px" src="Cookie.png"><br>
+		    <b id="results">accretion</b><br>
+            <b id="streak">streak: 0x<b><br>
+		    
+        </div>
+        <div class = "container">
+            
+        </div>
+
+            <div style="position: absolute; bottom: 5px;">
+                Questions or concerns? Want to report a bug? Email dperez434@protonmail.com
+            </div>
+
+        
+		<script src="script.js">
+			
+		</script>
+        
+	</body>
+</html>
