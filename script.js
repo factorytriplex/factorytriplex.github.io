@@ -30,7 +30,7 @@ const upgrades = [
     {name: "Diamond", cost: 2000000000, multiplier: 600, power: [10,11,12,13,14,15]},
     {name: "Tanzanite", cost: 100000000000, multiplier: 1000, power: [13,14,15]},
     {name: "Beryl", cost: 10000000000000, multiplier: 1500, power: [15,16]},
-    {name: "Painite", cost: 100000000000000, multiplier: 50000, power: [16,17,18]},
+    {name: "Painite", cost: 10000000000000, multiplier: 50000, power: [16,17,18]},
     {name: "Godmatter", cost: 150000000000000000, multiplier: 250000, power: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]}
 ]
 
