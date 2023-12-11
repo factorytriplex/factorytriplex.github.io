@@ -26,12 +26,12 @@ const upgrades = [
     {name: "Bronze", cost: 2000000, multiplier: 80, power: [2,3,4,5,6,7]},
     {name: "Cobalt", cost: 10000000, multiplier: 120, power: [4,5,6,7]},
     {name: "Golden", cost: 100000000, multiplier: 150, power: [5,6,7,8]},
-    {name: "Obsidian", cost: 1000000000, multiplier: 200, power: [6,7,8,9,10]},
-    {name: "Diamond", cost: 20000000000, multiplier: 400, power: [10,11,12,13,14,15]},
-    {name: "Tanzanite", cost: 10000000000000, multiplier: 800, power: [13,14,15]},
-    {name: "Beryl", cost: 1000000000000000, multiplier: 1500, power: [15,16]},
-    {name: "Painite", cost: 100000000000000000, multiplier: 50000, power: [16,17,18]},
-    {name: "Godmatter", cost: 1500000000000000000000, multiplier: 250000, power: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]}
+    {name: "Obsidian", cost: 400000000, multiplier: 200, power: [6,7,8,9,10]},
+    {name: "Diamond", cost: 2000000000, multiplier: 400, power: [10,11,12,13,14,15]},
+    {name: "Tanzanite", cost: 1000000000000, multiplier: 800, power: [13,14,15]},
+    {name: "Beryl", cost: 100000000000000, multiplier: 1500, power: [15,16]},
+    {name: "Painite", cost: 1000000000000000, multiplier: 50000, power: [16,17,18]},
+    {name: "Godmatter", cost: 15000000000000000000, multiplier: 250000, power: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]}
 ]
 
 const rocks = [
