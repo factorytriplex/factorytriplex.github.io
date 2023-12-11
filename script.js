@@ -12,22 +12,26 @@ let answered = false
 let workers = 0
 let drill = 0
 let rebirths = 0
+let mk = 0
 
+setInterval(function() {
+	mk = 0
+}, 1000)
 
 const upgrades = [
     {name: "No", cost: 0, multiplier: 1, power: [0,1]},
 	{name: "Earthen", cost: 250, multiplier: 2, power: [0,1,2]},
-    {name: "Novice", cost: 15000, multiplier: 3, power: [1,2,3]},
-    {name: "Iron", cost: 150000, multiplier: 4, power: [1,2,3,4]},
-    {name: "Bronze", cost: 5000000, multiplier: 4.5, power: [2,3,4,5,6,7]},
-    {name: "Cobalt", cost: 10000000, multiplier: 5, power: [4,5,6,7]},
-    {name: "Golden", cost: 100000000, multiplier: 6, power: [5,6,7,8]},
-    {name: "Obsidian", cost: 1000000000, multiplier: 20, power: [6,7,8,9,10]},
-    {name: "Diamond", cost: 100000000000, multiplier: 25, power: [10,11,12,13,14,15]},
-    {name: "Tanzanite", cost: 10000000000000, multiplier: 40, power: [13,14,15]},
-    {name: "Beryl", cost: 1000000000000000, multiplier: 80, power: [15,16]},
-    {name: "Painite", cost: 100000000000000000, multiplier: 125, power: [16,17,18]},
-    {name: "Godmatter", cost: 1500000000000000000000, multiplier: 2500, power: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]}
+    {name: "Novice", cost: 15000, multiplier: 20, power: [1,2,3]},
+    {name: "Iron", cost: 150000, multiplier: 40, power: [1,2,3,4]},
+    {name: "Bronze", cost: 2000000, multiplier: 80, power: [2,3,4,5,6,7]},
+    {name: "Cobalt", cost: 10000000, multiplier: 120, power: [4,5,6,7]},
+    {name: "Golden", cost: 100000000, multiplier: 150, power: [5,6,7,8]},
+    {name: "Obsidian", cost: 1000000000, multiplier: 200, power: [6,7,8,9,10]},
+    {name: "Diamond", cost: 20000000000, multiplier: 400, power: [10,11,12,13,14,15]},
+    {name: "Tanzanite", cost: 10000000000000, multiplier: 800, power: [13,14,15]},
+    {name: "Beryl", cost: 1000000000000000, multiplier: 1500, power: [15,16]},
+    {name: "Painite", cost: 100000000000000000, multiplier: 50000, power: [16,17,18]},
+    {name: "Godmatter", cost: 1500000000000000000000, multiplier: 250000, power: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]}
 ]
 
 const rocks = [
@@ -80,17 +84,19 @@ const refiners = [
 window.onload = function() {
   x = parseInt(getCookie("x")) || 0;
   workers = parseInt(getCookie("workers")) || 0;
-  lvl = parseInt(getCookie("lvl")) || 0;
+  lvl = parseInt(getCookie("lvl")) || 1;
   grams = parseInt(getCookie("grams")) || 0;
-  upgr = parseInt(getCookie("spade")) || 1;
+  upgr = parseInt(getCookie("upgr")) || 1;
   drill = parseInt(getCookie("drill")) || 0;
-  ref = parseInt(getCookie("ref")) || 1;
+  ref = parseInt(getCookie("ref")) || 0;
   rebirths = parseInt(getCookie("rebirths")) || 0;
+  xp = parseInt(getCookie("xp")) || 0;
 }
 
 // Save the variables to cookies when the page is about to close
 window.onbeforeunload = function() {
   setCookie("x", x);
+  setCookie("xp", xp);
   setCookie("workers", workers);
   setCookie("lvl", lvl);
   setCookie("grams", grams);
@@ -142,15 +148,19 @@ function rebirth() {
 }
 
 function increase() {
-    let rawOre = rocks[upgrades[upgr-1].power[Math.round(Math.random() * upgrades[upgr-1].power.length)]]
-    let xx = rawOre.value
-    grams += xx * upgrades[upgr-1].multiplier * lvl
-    xp += rawOre.xp *upgrades[upgr-1].multiplier
+	if (mk < 19) {
+		mk++
+		let rawOre = rocks[upgrades[upgr-1].power[Math.round(Math.random() * upgrades[upgr-1].power.length)]]
+    		let xx = rawOre.value
+    		grams += xx * upgrades[upgr-1].multiplier * lvl
+    		xp += rawOre.xp *upgrades[upgr-1].multiplier
 
-    if (rawOre == bl) {strk++} else {strk = 0}
-    bl = rawOre
-    document.getElementById("results").innerHTML = `+ [${rawOre.rarity}] ${rawOre.name} (value: ${xx*upgrades[upgr-1].multiplier}, xp: ${rawOre.xp*upgrades[upgr-1].multiplier})`
-    document.getElementById("streak").innerHTML = `streak: ${strk}x`
+    		if (rawOre == bl) {strk++} else {strk = 0} {
+    			bl = rawOre
+    			document.getElementById("results").innerHTML = `+ [${rawOre.rarity}] ${rawOre.name} (value: ${xx*upgrades[upgr-1].multiplier}, xp: ${rawOre.xp*upgrades[upgr-1].multiplier})`
+    			document.getElementById("streak").innerHTML = `streak: ${strk}x`
+		}
+	}
 }
 function upgrader() {
     if (upgr < upgrades.length) {
@@ -178,12 +188,12 @@ function sell() {
 
 setInterval(function() {
     if (upgr<upgrades.length) {
-		document.getElementById("upgrade").innerHTML = `${upgrades[upgr].name}: $${formatCash(upgrades[upgr].cost)}` 
+		document.getElementById("upgrade").innerHTML = `${upgrades[upgr].name} Pickaxe: $${formatCash(upgrades[upgr].cost)}` 
     } else {
         document.getElementById("upgrade").innerHTML = `MAX`
     }
 
-    for (i=0; i < levels.length; i++) {
+    for (i=0; i < 7; i++) {
         let l = 1
         if (xp >= levels[i].xp) {
             l++
@@ -195,7 +205,7 @@ setInterval(function() {
     }
     
     let filee = document.getElementById("file")
-    if (lvl<levels.length) {
+    if (lvl<6) {
         filee.value = xp
         filee.max = levels[lvl].xp
     } else {
@@ -221,7 +231,9 @@ setInterval(function() {
     document.getElementById("rlevel").innerHTML = `Refiner Level ${ref}`
     document.getElementById("reffects").innerHTML = `Refiner Effects: x${refiners[ref].refiner}`
     document.getElementById("refinerupgrade").innerHTML = `Upgrade Refiner: $${formatCash(refiners[ref+1].cost)}`
-    
+    	document.getElementById("buyWorker").innerHTML = `Buy Worker(${workers}): ${formatCash( refiners[workers].cost)}`
+
+	document.getElementById("workertext").innerHTML = `Workers: ${workers}`
 },100)
 
 document.addEventListener("keypress", function(event) {
@@ -252,3 +264,19 @@ imageButton.addEventListener("click", function() {
     panel.removeChild(textElement);
   }, 1000);
 });
+
+setInterval(function() {
+	setTimeout(function() {
+		for (i=0; i < workers; i++) {
+			increase()
+		}	
+	}, Math.random() * 100)
+}, 1000)
+
+function buyWorker() {
+	let workerCost = refiners[workers].cost
+	if (x>= workerCost) {
+		x -= workerCost
+		workers++
+	}
+}
