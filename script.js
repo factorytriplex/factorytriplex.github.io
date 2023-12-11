@@ -72,12 +72,12 @@ const refiners = [
     {refiner: 1, cost: 100},
     {refiner: 1.5, cost: 500},
     {refiner: 2, cost: 1000},
-    {refiner: 3, cost: 10000},
-    {refiner: 4, cost: 100000},
-    {refiner: 5, cost: 1000000},
-    {refiner: 8, cost: 10000000},
-    {refiner: 16, cost: 1000000000},
-    {refiner: 32, cost: 10000000000000000}
+    {refiner: 4, cost: 10000},
+    {refiner: 8, cost: 100000},
+    {refiner: 10, cost: 1000000},
+    {refiner: 16, cost: 10000000},
+    {refiner: 32, cost: 1000000000},
+    {refiner: 64, cost: 10000000000000000}
 ]
 
 
